@@ -275,6 +275,11 @@ pub async fn register(
     .await?;
 
     let account_type = payload.account_type.clone().unwrap_or(AccountType::Person);
+    if matches!(account_type, AccountType::Admin) {
+        return Err(ApiError::Validation(
+            "administrator accounts can only be provisioned by server bootstrap".into(),
+        ));
+    }
     let password_hash = auth_service::hash_password(&payload.password).map_err(|error| {
         tracing::error!(?error, "password hashing failed");
         ApiError::Internal
