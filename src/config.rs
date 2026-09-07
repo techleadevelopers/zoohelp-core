@@ -134,7 +134,7 @@ impl Config {
             google_maps_api_key: env::var("GOOGLE_MAPS_API_KEY").ok(),
             api_public_url: env::var("API_PUBLIC_URL")
                 .or_else(|_| env::var("EXPO_PUBLIC_API_BASE_URL"))
-                .unwrap_or_else(|_| "https://zoohelp-core-production.up.railway.app".to_string()),
+                .unwrap_or_else(|_| "https://helpin-platform-core-production.up.railway.app".to_string()),
             app_public_url: env::var("APP_PUBLIC_URL")
                 .unwrap_or_else(|_| "https://zoohelp.app".to_string()),
             smtp_host: env::var("SMTP_HOST")
