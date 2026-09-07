@@ -14,6 +14,7 @@ use tower_http::{
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
 
 mod config;
+mod bootstrap_admin;
 mod domain;
 mod error;
 mod routes;
@@ -28,6 +29,7 @@ async fn main() -> anyhow::Result<()> {
     dotenvy::dotenv().ok();
 
     let config = Config::from_env()?;
+    bootstrap_admin::ensure_from_env(&config.database_url).await?;
     let _otel_provider = init_tracing(&config)?;
     let state = AppState::new(config.clone()).await?;
 
