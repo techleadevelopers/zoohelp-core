@@ -520,8 +520,12 @@ CLOUDINARY_URL
 Mobile/API integration:
 
 ```text
-EXPO_PUBLIC_API_BASE_URL
+EXPO_PUBLIC_API_BASE_URL=https://helpin-platform-core-production.up.railway.app
 ```
+
+For Android builds, EAS reads this value from the selected profile in
+`artifacts/mobile/eas.json` and embeds it in the APK. Keep it aligned with
+`API_PUBLIC_URL` in the backend deployment.
 
 Operational note:
 
